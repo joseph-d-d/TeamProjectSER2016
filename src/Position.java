@@ -23,4 +23,9 @@ public class Position {
 	public boolean isPellet(){
 		return isPellet;
 	}
+	
+	public void removePellet(){
+		isBlank = true;
+		isPellet = false;
+	}
 }

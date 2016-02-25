@@ -7,7 +7,6 @@ public class Pacman extends GameObject {
 
 	public Pacman(int x, int y, Color color, Input input, Board gameBoard) {
 		super(x, y, color, input, gameBoard);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,6 +36,7 @@ public class Pacman extends GameObject {
 					System.out.println("Move pacman down");
 				}
 			}
+			tryToEatPellet();
 		}
 	}
 	
@@ -49,6 +49,12 @@ public class Pacman extends GameObject {
 	
 	private void death(){
 		isActive = false;
+	}
+	
+	private void tryToEatPellet(){
+		if(gameBoard.getGameboard()[yCoord][xCoord].isPellet()){
+			gameBoard.getGameboard()[yCoord][xCoord].removePellet();
+		}
 	}
 	
 }
