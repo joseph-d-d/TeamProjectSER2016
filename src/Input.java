@@ -13,6 +13,7 @@ public class Input extends KeyAdapter{
 	public void keyPressed(KeyEvent e){
 		if(e != null){
 			currentKeyPressed = e;
+			isAnyKeyPressed = true;
 		}
 	}
 	
@@ -21,6 +22,8 @@ public class Input extends KeyAdapter{
 	 * @param KeyEvent e The KeyEvent caused the function to be called.
 	 */
 	public void keyReleased(KeyEvent e){
+		currentKeyPressed = null;
+		isAnyKeyPressed = false;
 	}
 	
 	/**
@@ -47,6 +50,9 @@ public class Input extends KeyAdapter{
      * @return isAnKeyPressed is any key pressed.
      */
 	public boolean getIsKeyPressed(){
+		if(currentKeyPressed == null){
+			isAnyKeyPressed = false;
+		}
 		return isAnyKeyPressed;
 	}
 }
