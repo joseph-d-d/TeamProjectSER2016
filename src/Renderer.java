@@ -28,13 +28,13 @@ public class Renderer {
 		frame.getContentPane().add(gameWindow);
 		frame.setVisible(true);
 		frame.setResizable(false);
-		frame.setSize(640, 480);
+		frame.setSize(1024, 768);
 		gameWindow.createBufferStrategy(2);
 		bufferStrategy = gameWindow.getBufferStrategy();
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		gd = ge.getDefaultScreenDevice();
 		gc = gd.getDefaultConfiguration();
-		bi = gc.createCompatibleImage( 640, 480 );
+		bi = gc.createCompatibleImage(1024, 768);
 		// Find the users screen size and center the window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int w = frame.getSize().width;
@@ -47,14 +47,18 @@ public class Renderer {
 	public void render(Board gameBoard, Pacman pacman){
 		g2d = bi.createGraphics();
 		g2d.setColor(Color.BLACK);
-		g2d.fillRect(0, 0, 420, 525);
+		g2d.fillRect(0, 0, 1024, 768);
 		for(int i = 0; i < gameBoard.getGameboard().length; i++){
 			for(int j = 0; j < gameBoard.getGameboard()[i].length; j++){
 				if(gameBoard.getGameboard()[i][j].isWall()){
 					g2d.setColor(Color.BLUE);
 					g2d.fillRect(20*j, 20*i, 20, 20);
 				}
-				else{
+				else if(gameBoard.getGameboard()[i][j].isBlank()){
+					g2d.setColor(Color.BLACK);
+					g2d.fillRect(20*j, 20*i, 20, 20);
+				}
+				else if(gameBoard.getGameboard()[i][j].isPellet()){
 					g2d.setColor(Color.WHITE);
 					g2d.fillRect(20*j+10, 20*i+10, 4, 4);
 				}
@@ -62,7 +66,7 @@ public class Renderer {
 			}
 		}
 		g2d.setColor(Color.YELLOW);
-		g2d.fillOval(pacman.xCoord*20+5, pacman.yCoord*20+5, 10, 10);
+		g2d.fillOval(pacman.xCoord*20, pacman.yCoord*20, 20, 20);
 		
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.drawImage(bi, 0, 0, null);

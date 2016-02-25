@@ -13,23 +13,29 @@ public class Pacman extends GameObject {
 	public void update(){
 		if(input.getIsKeyPressed() == true){
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_A){
-				System.out.println("Move pacman left");
-				xCoord -= 1;
+				if(gameBoard.getGameboard()[yCoord][xCoord-1].isWall() == false){
+					xCoord -= 1;
+					System.out.println("Move pacman left");
+				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_D){
-				System.out.println("Move pacman right");
-				xCoord += 1;
+				if(gameBoard.getGameboard()[yCoord][xCoord+1].isWall() == false){
+					xCoord += 1;
+					System.out.println("Move pacman right");
+				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_W){
-				System.out.println("Move pacman up");
-				yCoord -= 1;
+				if(gameBoard.getGameboard()[yCoord-1][xCoord].isWall() == false){
+					yCoord -= 1;
+					System.out.println("Move pacman up");
+				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_S){
-				System.out.println("Move pacman down");
-				yCoord += 1;
+				if(gameBoard.getGameboard()[yCoord+1][xCoord].isWall() == false){
+					yCoord += 1;
+					System.out.println("Move pacman down");
+				}
 			}
-			
-			
 		}
 	}
 	

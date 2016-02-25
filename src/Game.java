@@ -12,7 +12,7 @@ public class Game extends Canvas {
 		gameWindow.addKeyListener(input);
 		Board gameBoard = new Board();
 		JFrame frame = new JFrame("Pacman");
-		Pacman pacman = new Pacman(1, 2, input, gameBoard);
+		Pacman pacman = new Pacman(2, 2, input, gameBoard);
 		Renderer renderer = new  Renderer(frame, gameWindow);
 		
 		
