@@ -1,11 +1,12 @@
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 public class Pacman extends GameObject {
 	
 	private int lives = 3;
 
-	public Pacman(int x, int y, Input input, Board gameBoard) {
-		super(x, y, input, gameBoard);
+	public Pacman(int x, int y, Color color, Input input, Board gameBoard) {
+		super(x, y, color, input, gameBoard);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,7 +51,4 @@ public class Pacman extends GameObject {
 		isActive = false;
 	}
 	
-	public void draw(){
-		
-	}
 }

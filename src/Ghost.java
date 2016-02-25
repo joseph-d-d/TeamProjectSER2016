@@ -1,8 +1,10 @@
+import java.awt.Color;
+
 public class Ghost extends GameObject {
 	private Behavior behavior;
 	
-	protected Ghost(int x, int y, Input input, Board gameBoard, Behavior behavior) {
-		super(x, y, input, gameBoard);
+	protected Ghost(int x, int y, Color color, Input input, Board gameBoard, Behavior behavior) {
+		super(x, y, color, input, gameBoard);
 		this.behavior = behavior;
 	}
 	

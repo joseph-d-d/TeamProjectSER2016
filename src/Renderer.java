@@ -44,7 +44,7 @@ public class Renderer {
 		frame.setLocation(x, y);
 	}
 	
-	public void render(Board gameBoard, Pacman pacman){
+	public void render(Board gameBoard, Pacman pacman, Ghost[] ghosts){
 		g2d = bi.createGraphics();
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, 1024, 768);
@@ -65,8 +65,15 @@ public class Renderer {
 				
 			}
 		}
-		g2d.setColor(Color.YELLOW);
+		g2d.setColor(pacman.getColor());
 		g2d.fillOval(pacman.xCoord*20, pacman.yCoord*20, 20, 20);
+		
+		for(Ghost ghost : ghosts){
+			g2d.setColor(ghost.getColor());
+			g2d.fillRect(ghost.xCoord*20, ghost.yCoord*20+10, 20, 10);
+			g2d.fillOval(ghost.xCoord*20, ghost.yCoord*20, 20, 20);
+		}
+		
 		
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.drawImage(bi, 0, 0, null);

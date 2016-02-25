@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public abstract class GameObject {
 	protected int xCoord;
@@ -6,9 +7,10 @@ public abstract class GameObject {
 	protected boolean isActive;
 	protected Board gameBoard;
 	
-	protected GameObject(int x, int y, Input input, Board gameBoard){
+	protected GameObject(int x, int y, Color color, Input input, Board gameBoard){
 		this.xCoord = x;
 		this.yCoord = y;
+		this.color = color;
 		this.input = input;
 		this.gameBoard = gameBoard;
 	}
@@ -39,6 +41,14 @@ public abstract class GameObject {
 	 */
 	protected void setYCoord(int yCoord) {
 		this.yCoord = yCoord;
+	}
+	
+	protected Color color;
+	/**
+	 * @return the color
+	 */
+	public Color getColor() {
+		return color;
 	}
 
 	/**
