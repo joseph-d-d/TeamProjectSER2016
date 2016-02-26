@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 public class Board {
 	private Position[][] gameBoard = null;
 	
@@ -42,8 +40,7 @@ public class Board {
 				{0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,0},
 				{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0}
 			};
-		
-		
+
 		for (int i = 0; i < 34; i++)
 		{
 			for (int j = 0; j < 30; j++)
@@ -68,54 +65,6 @@ public class Board {
 				}			
 			} // end inner for loop
 		} // end outer for loop
-		
-		
-		
-		/*
-		for(int i = 0; i < 32; i++){
-			for(int j = 0; j < 28; j++){
-				if(i == 0){
-					gameBoard[i][j] = new Position(true);
-				}
-				if(i == 1){
-					if(j == 13 || j == 0 || j == 27){
-						gameBoard[i][j] = new Position(true);
-					}
-					else{
-						gameBoard[i][j] = new Position(false);
-					}
-				}
-				else if(i == 2 || i == 3){
-					if(j == 0 || (j >= 2 && j <= 5) || (j >= 7 && j <= 11) || j == 13 || (j >= 15 && j <= 19 ) || (j >= 21 && j <= 25) || j == 27){
-						gameBoard[i][j] = new Position(true);
-					}
-					else{
-						gameBoard[i][j] = new Position(false);
-					}
-				}
-				else if(i == 4){
-					if(j == 0 || j == 27){
-						gameBoard[i][j] = new Position(true);
-					}
-					else{
-						gameBoard[i][j] = new Position(false);
-					}
-				}
-				else if(i >= 5 && i <=10){
-					if(j == 0 || (j >= 2 && j <= 5) || (j >= 7 && j <= 11) || j == 13 || (j >= 15 && j <= 19 ) || (j >= 21 && j <= 25) || j == 27){
-						gameBoard[i][j] = new Position(true);
-					}
-					else{
-						gameBoard[i][j] = new Position(false);
-					}
-				}
-				else{
-					gameBoard[i][j] = new Position(true);
-				}
-				
-			}
-		}
-		*/
 	}
 	
 	public Position[][] getGameboard(){

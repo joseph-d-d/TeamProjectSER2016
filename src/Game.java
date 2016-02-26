@@ -19,14 +19,15 @@ public class Game extends Canvas {
 		ghosts[2] = new Ghost(15, 15, Color.BLUE, input, gameBoard, Behavior.FOLLOW_LEFT);
 		ghosts[3] = new Ghost(17, 15, Color.RED, input, gameBoard, Behavior.FOLLOW_RIGHT);
 
+		//Game loop
 		while (!exitGame) {
 			renderer.render(gameBoard, pacman, ghosts);
 			pacman.update();
+			for(Ghost ghost : ghosts){
+				ghost.update();
+			}
 			input.update();
 			Thread.yield();
 		}
-
-		
 	} // end main
-
 } // end class

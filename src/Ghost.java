@@ -9,7 +9,14 @@ public class Ghost extends GameObject {
 	}
 	
 	@Override
+	/**
+	 * Update is run every frame and performs what ever actions need to be
+	 * run for ghost like moving.
+	 */
 	public void update(){
+		//removes sets that spot free as it move to a new one
+		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(null);
+		//Calls the AI behavior for the current ghost
 		switch(behavior){
 		case AGGRESSIVE:
 			aggressiveMovePattern();
@@ -27,6 +34,8 @@ public class Ghost extends GameObject {
 			System.out.print("Error no behavoir assigned");
 			break;
 		}
+		//occupies a spot so pacman can check for collision
+		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(this);
 	}
 	
 	private void calculateNextMove(){
@@ -47,6 +56,13 @@ public class Ghost extends GameObject {
 	
 	private void followLeftPattern(){
 		
+	}
+	
+	/**
+	 * Kills the ghost
+	 */
+	public void death(){
+		isActive = false;
 	}
 	
 }

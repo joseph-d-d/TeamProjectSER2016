@@ -4,13 +4,20 @@ import java.awt.event.KeyEvent;
 public class Pacman extends GameObject {
 	
 	private int lives = 3;
+	private boolean canPacmanKillGhosts = false;
 
 	public Pacman(int x, int y, Color color, Input input, Board gameBoard) {
 		super(x, y, color, input, gameBoard);
 	}
 
 	@Override
+	/**
+	 * Update is run every frame and performs what ever actions need to be
+	 * run for pacman like moving, eating pellets, checking for ghosts.
+	 */
 	public void update(){
+		
+		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(null);
 		if(input.getIsKeyPressed() == true){
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_A){
 				if(gameBoard.getGameboard()[yCoord][xCoord-1].isWall() == false){
@@ -36,10 +43,16 @@ public class Pacman extends GameObject {
 					System.out.println("Move pacman down");
 				}
 			}
+			checkForGhost();
+			gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(this);
 			tryToEatPellet();
+			
 		}
 	}
 	
+	/**
+	 * Pacman lose a life, and dies if no lives are left.
+	 */
 	private void loseLife(){
 		lives--;
 		if(lives == 0){
@@ -47,13 +60,36 @@ public class Pacman extends GameObject {
 		}
 	}
 	
-	private void death(){
+	/**
+	 * Sets pacman to no longer be active. 
+	 */
+	public void death(){
 		isActive = false;
 	}
 	
+	/**
+	 * Pacman attempts to eat a pellet if one is found it calls
+	 * remove pellet on that position.
+	 */
 	private void tryToEatPellet(){
 		if(gameBoard.getGameboard()[yCoord][xCoord].isPellet()){
 			gameBoard.getGameboard()[yCoord][xCoord].removePellet();
+		}
+	}
+	
+	/**
+	 * Pacman checks for a ghost in the current position,
+	 * if one is found pacman calls lose life or kill ghost.
+	 */
+	private void checkForGhost(){
+		if(gameBoard.getGameboard()[yCoord][xCoord].getIsOccupiedBy() == true){
+			if(canPacmanKillGhosts == false){
+				loseLife();
+			}
+			else{
+				gameBoard.getGameboard()[yCoord][xCoord].getOccupiedBy().death();
+			}
+			
 		}
 	}
 	
