@@ -97,7 +97,6 @@ public class Ghost extends GameObject {
 		// Ghost is inside the pattern
 		else
 		{
-			//System.out.println("Total ghost moves = " + totalGhostMoves);
 			if ((xCoord == 22) && (yCoord >= 7) && (totalGhostMoves < totalPacmanMoves))
 			{
 				// Move ghost up
@@ -132,6 +131,7 @@ public class Ghost extends GameObject {
 	private void followLeftPattern(){
 		int totalPacmanMoves = input.getTotalPacmanMoves();
 		int totalGhostMoves = input.getTotalGhostMoves();
+		int positionInPattern = totalGhostMoves - 11;
 		// First 12 moves to get ghost to into his pattern
 		if ((totalPacmanMoves > 0) && (totalGhostMoves < totalPacmanMoves) 
 				&& totalGhostMoves < 12){
@@ -167,11 +167,86 @@ public class Ghost extends GameObject {
 				// Do nothing. Ghost is already in his pattern
 				break;			
 			} // end switch
-		} // end if
-		
+		} // end if		
 		// Ghost is inside the pattern
+		positionInPattern = positionInPattern % 146;
+		boolean up = false;
+		boolean left = false;
+		boolean right = false;
+		boolean down = false;
+		// Determine which direction to move in the pattern
+		if (((positionInPattern >= 1) && (positionInPattern < 8))
+			|| ((positionInPattern >= 13) && (positionInPattern < 20))
+			|| ((positionInPattern >= 44) && (positionInPattern < 48))
+			|| ((positionInPattern >= 122) && (positionInPattern < 125))
+			|| ((positionInPattern >= 127) && (positionInPattern < 130))
+			|| ((positionInPattern >= 132) && (positionInPattern < 135))
+			| ((positionInPattern >= 140) && (positionInPattern < 146))
+				)
+		{
+			up = true;
+		}
+		if (((positionInPattern >= 8) && (positionInPattern < 13))
+			|| (positionInPattern >= 60) && (positionInPattern < 65)
+			|| (positionInPattern >= 87) && (positionInPattern < 89)
+			|| (positionInPattern >= 97) && (positionInPattern < 122)
+			|| (positionInPattern >= 130) && (positionInPattern < 132)
+				)
 		
-	}
+		{
+			left = true;
+		}
+		if (((positionInPattern >= 20) && (positionInPattern < 25))
+			|| ((positionInPattern >= 29) && (positionInPattern < 44))
+			|| ((positionInPattern >=48) && (positionInPattern < 53))
+			|| ((positionInPattern >=79) && (positionInPattern < 84))
+			|| ((positionInPattern >=92) && (positionInPattern < 94))
+			|| ((positionInPattern >=125) && (positionInPattern < 127))
+			|| ((positionInPattern >=135) && (positionInPattern < 140))
+				)
+		{
+			right = true;
+		}	
+		if (((positionInPattern >= 25) && (positionInPattern < 29))
+			|| ((positionInPattern >= 53) && (positionInPattern < 60))
+			|| ((positionInPattern >=65) && (positionInPattern < 79))
+			|| ((positionInPattern >=84) && (positionInPattern < 87))
+			|| ((positionInPattern >=89) && (positionInPattern < 92))
+			|| ((positionInPattern >=94) && (positionInPattern < 97))
+				)
+		{
+			down = true;
+		}
+		// Move in the correct direction
+		if (up && (totalGhostMoves < totalPacmanMoves)){
+			// Move ghost up
+			if(gameBoard.getGameboard()[yCoord-1][xCoord].isWall() == false){
+				yCoord-= 1;
+			} // end if
+		} // end if
+		else if (left && (totalGhostMoves < totalPacmanMoves)){
+			// move ghost left
+			if(gameBoard.getGameboard()[yCoord][xCoord - 1].isWall() == false){
+				xCoord-= 1;
+			}
+		}
+		else if (right && (totalGhostMoves < totalPacmanMoves)){
+			// move ghost right			
+			if(gameBoard.getGameboard()[yCoord][xCoord + 1].isWall() == false){
+				xCoord+= 1;
+			}
+		}
+		else if (down && (totalGhostMoves < totalPacmanMoves)){
+			// move ghost down
+			if(gameBoard.getGameboard()[yCoord + 1][xCoord].isWall() == false){
+				yCoord+= 1;
+			}
+		}
+		
+			
+			
+		
+	} // end followLeftPattern
 	
 	/**
 	 * Kills the ghost
