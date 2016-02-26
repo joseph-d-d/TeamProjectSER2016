@@ -3,6 +3,11 @@ public class Board {
 	
 	public Board(){
 		gameBoard = new Position[34][30];
+		// 0 represents an empty position
+		// 1 represents a wall
+		// 2 represents a pellet
+		// 3 represents a power pellet
+		// 4 represents a pellet and an intersection
 		int[][] boardArray = 
 			{
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
