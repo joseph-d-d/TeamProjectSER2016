@@ -54,6 +54,8 @@ public class Ghost extends GameObject {
 	private void followRightPattern(){
 		int totalPacmanMoves = input.getTotalPacmanMoves();
 		int totalGhostMoves = input.getTotalGhostMoves();
+		int positionInPattern = totalGhostMoves - 11;
+		System.out.println("Position in pattern: " + positionInPattern);
 		// First 12 moves to get ghost to into his pattern
 		if ((totalPacmanMoves > 0) && (totalGhostMoves < totalPacmanMoves) 
 				&& totalGhostMoves < 12){
@@ -63,7 +65,6 @@ public class Ghost extends GameObject {
 				// Move ghost up
 				if(gameBoard.getGameboard()[yCoord-1][xCoord].isWall() == false){
 					yCoord-= 1;
-					System.out.println("Move red ghost up");
 				}
 				break;
 			case 3:
@@ -76,8 +77,6 @@ public class Ghost extends GameObject {
 				// Move ghost right
 				if(gameBoard.getGameboard()[yCoord][xCoord + 1].isWall() == false){
 					xCoord+= 1;
-					System.out.println("Move red ghost right");
-					System.out.println("Ghost x coord is " + xCoord);
 				}
 				break;
 			case 7:
@@ -86,7 +85,6 @@ public class Ghost extends GameObject {
 				// Move ghost down
 				if(gameBoard.getGameboard()[yCoord + 1][xCoord].isWall() == false){
 					yCoord+= 1;
-					System.out.println("Move red ghost down");
 				}
 				break;
 			default:
@@ -104,7 +102,6 @@ public class Ghost extends GameObject {
 			{
 				// Move ghost up
 				yCoord-= 1;
-				System.out.println("Move red ghost up");	
 				totalGhostMoves++;
 				input.setTotalGhostMoves(totalGhostMoves);			
 			}
@@ -112,37 +109,67 @@ public class Ghost extends GameObject {
 			{
 				// Move ghost left
 				xCoord-= 1;
-				System.out.println("Move red ghost left");
 				totalGhostMoves++;
 				input.setTotalGhostMoves(totalGhostMoves);	
-				System.out.println("Ghost x coord is " + xCoord);
 			}
 			else if ((xCoord == 7) && (yCoord < 26) && (totalGhostMoves < totalPacmanMoves))
 			{
 				// Move ghost down
 				yCoord+= 1;
-				System.out.println("Move red ghost down");
 				totalGhostMoves++;
 				input.setTotalGhostMoves(totalGhostMoves);	
-				System.out.println("Ghost y coord is " + yCoord);
 			}
 			else if((yCoord == 26) && (totalGhostMoves < totalPacmanMoves))
 			{
 				// Move ghost right
 				xCoord+= 1;
-				System.out.println("Move red ghost right");
 				totalGhostMoves++;
 				input.setTotalGhostMoves(totalGhostMoves);	
-				System.out.println("Ghost x coord is " + xCoord);
 			}
 		}
-
-		
-			
-
 	}
 	
 	private void followLeftPattern(){
+		int totalPacmanMoves = input.getTotalPacmanMoves();
+		int totalGhostMoves = input.getTotalGhostMoves();
+		// First 12 moves to get ghost to into his pattern
+		if ((totalPacmanMoves > 0) && (totalGhostMoves < totalPacmanMoves) 
+				&& totalGhostMoves < 12){
+			switch (totalPacmanMoves){
+			case 1:
+			case 2:
+				// Move ghost up
+				if(gameBoard.getGameboard()[yCoord-1][xCoord].isWall() == false){
+					yCoord-= 1;
+				}
+				break;
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 10:
+			case 11:
+			case 12:
+				// Move ghost left
+				if(gameBoard.getGameboard()[yCoord][xCoord - 1].isWall() == false){
+					xCoord-= 1;
+				}
+				break;
+			case 7:
+			case 8:
+			case 9:
+				// Move ghost down
+				if(gameBoard.getGameboard()[yCoord + 1][xCoord].isWall() == false){
+					yCoord+= 1;
+				}
+				break;
+			default:
+				// Do nothing. Ghost is already in his pattern
+				break;			
+			} // end switch
+		} // end if
+		
+		// Ghost is inside the pattern
 		
 	}
 	
@@ -152,5 +179,4 @@ public class Ghost extends GameObject {
 	public void death(){
 		isActive = false;
 	}
-	
 }
