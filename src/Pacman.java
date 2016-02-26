@@ -19,28 +19,34 @@ public class Pacman extends GameObject {
 		
 		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(null);
 		if(input.getIsKeyPressed() == true){
+			
+			
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_A){
 				if(gameBoard.getGameboard()[yCoord][xCoord-1].isWall() == false){
 					xCoord -= 1;
 					System.out.println("Move pacman left");
+					System.out.println("Total moves: " + input.getTotalPacmanMoves());
 				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_D){
 				if(gameBoard.getGameboard()[yCoord][xCoord+1].isWall() == false){
 					xCoord += 1;
 					System.out.println("Move pacman right");
+					System.out.println("Total moves: " + input.getTotalPacmanMoves());
 				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_W){
 				if(gameBoard.getGameboard()[yCoord-1][xCoord].isWall() == false){
 					yCoord -= 1;
 					System.out.println("Move pacman up");
+					System.out.println("Total moves: " + input.getTotalPacmanMoves());
 				}
 			}
 			if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_S){
 				if(gameBoard.getGameboard()[yCoord+1][xCoord].isWall() == false){
 					yCoord += 1;
 					System.out.println("Move pacman down");
+					System.out.println("Total moves: " + input.getTotalPacmanMoves());
 				}
 			}
 			checkForGhost();

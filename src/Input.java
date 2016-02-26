@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 public class Input extends KeyAdapter{
 	private KeyEvent currentKeyPressed;
 	private boolean isAnyKeyPressed = false;
+	private int totalPacmanMoves = 0;
+	private int totalGhostMoves = 0;
 	
 
 	/**
@@ -14,6 +16,7 @@ public class Input extends KeyAdapter{
 		if(e != null){
 			currentKeyPressed = e;
 			isAnyKeyPressed = true;
+			totalPacmanMoves++;
 		}
 	}
 	
@@ -47,7 +50,7 @@ public class Input extends KeyAdapter{
 
     /**
      * Returns the value of is any key pressed?
-     * @return isAnKeyPressed is any key pressed.
+     * @return isAnyKeyPressed is any key pressed.
      */
 	public boolean getIsKeyPressed(){
 		if(currentKeyPressed == null){
@@ -55,4 +58,40 @@ public class Input extends KeyAdapter{
 		}
 		return isAnyKeyPressed;
 	}
+
+    /**
+     * Returns the value of totalPacmanMoves 
+     * @return totalPacmanMoves
+     */
+	public int getTotalPacmanMoves()
+	{
+		return totalPacmanMoves;
+	}
+	
+    /**
+     * Sets the value of totalPacmanMoves
+     */
+	public void setTotalPacmanMoves(int moves)
+	{
+		totalPacmanMoves = moves;
+	}
+	
+    /**
+     * Returns the value of totalGhostMoves
+     * @return totalGhostMoves
+     */
+	public int getTotalGhostMoves()
+	{
+		return totalGhostMoves;
+	}
+	
+    /**
+     * Sets the value of totalGhostMoves
+     */
+	public void setTotalGhostMoves(int moves)
+	{
+		totalGhostMoves = moves;
+	}
+	
+	
 }
