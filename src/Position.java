@@ -2,12 +2,15 @@ public class Position {
 	private boolean isWall = false;
 	private boolean isBlank = false;
 	private boolean isPellet = false;
+	private boolean isPowerPellet = false;
 	private GameObject occupiedBy = null;
 	
-	public Position(boolean isWall, boolean isBlank, boolean isPellet){
+	public Position(boolean isWall, boolean isBlank, boolean isPellet, boolean isPowerPellet){
 		this.isWall = isWall;
 		this.isBlank = isBlank;
 		this.isPellet = isPellet;
+		this.isPowerPellet = isPowerPellet;
+		
 	}
 
 	/**
@@ -33,12 +36,17 @@ public class Position {
 		return isPellet;
 	}
 	
+	public boolean isPowerPellet(){
+		return isPowerPellet;
+	}
+	
 	/**
 	 * Removes the pellet from this position and makes it blank.
 	 */
 	public void removePellet(){
 		isBlank = true;
 		isPellet = false;
+		isPowerPellet = false;
 	}
 
 	/**

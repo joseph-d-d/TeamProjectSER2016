@@ -51,23 +51,23 @@ public class Board {
 			for (int j = 0; j < 30; j++)
 			{
 				if(boardArray[i][j] == 0){
-					gameBoard[i][j] = new Position(false, true, false);
+					gameBoard[i][j] = new Position(false, true, false, false);
 				}
 				// Draw wall positions for array values of 1
 				if (boardArray[i][j] == 1)
 				{
-					gameBoard[i][j] = new Position(true, false, false);
+					gameBoard[i][j] = new Position(true, false, false, false);
 				} // end if
 				// Draw pellet positions for array values of 2
 				if (boardArray[i][j] == 2)
 				{
-					gameBoard[i][j] = new Position(false, false, true);
+					gameBoard[i][j] = new Position(false, false, true, false);
 				}
 				// Draw power pellets for array values of 3
 				if (boardArray[i][j] == 3)
 				{
-					gameBoard[i][j] = new Position(false, false, true);
-				}			
+					gameBoard[i][j] = new Position(false, false, true, true);
+				}
 			} // end inner for loop
 		} // end outer for loop
 	}

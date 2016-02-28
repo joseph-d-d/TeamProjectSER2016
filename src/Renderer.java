@@ -62,6 +62,10 @@ public class Renderer {
 					g2d.setColor(Color.WHITE);
 					g2d.fillRect(20*j+10, 20*i+10, 4, 4);
 				}
+				if(gameBoard.getGameboard()[i][j].isPowerPellet()){
+					g2d.setColor(Color.RED);
+					g2d.fillRect(20*j+6, 20*i+6, 10, 10);
+				}
 				
 			}
 		}
