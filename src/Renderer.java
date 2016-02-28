@@ -74,6 +74,9 @@ public class Renderer {
 			g2d.fillOval(ghost.xCoord*20, ghost.yCoord*20, 20, 20);
 		}
 		
+		g2d.setColor(Color.WHITE);
+		g2d.drawString("Lives Remaining: " + pacman.getLives(), 15, 700);
+		
 		
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.drawImage(bi, 0, 0, null);

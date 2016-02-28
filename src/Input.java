@@ -25,8 +25,6 @@ public class Input extends KeyAdapter{
 	 * @param KeyEvent e The KeyEvent caused the function to be called.
 	 */
 	public void keyReleased(KeyEvent e){
-		currentKeyPressed = null;
-		isAnyKeyPressed = false;
 	}
 	
 	/**
