@@ -1,5 +1,8 @@
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 public class Board {
 	private Position[][] gameBoard = null;
+	private int numberOfPellets = 0;
 	
 	public Board(){
 		gameBoard = new Position[34][30];
@@ -62,11 +65,13 @@ public class Board {
 				if (boardArray[i][j] == 2)
 				{
 					gameBoard[i][j] = new Position(false, false, true, false);
+					numberOfPellets++;
 				}
 				// Draw power pellets for array values of 3
 				if (boardArray[i][j] == 3)
 				{
 					gameBoard[i][j] = new Position(false, false, true, true);
+					numberOfPellets++;
 				}
 			} // end inner for loop
 		} // end outer for loop
@@ -74,6 +79,14 @@ public class Board {
 	
 	public Position[][] getGameboard(){
 		return gameBoard;
+	}
+	
+	public int getNumberOfPellets(){
+		return numberOfPellets;
+	}
+	
+	public void reducePelletCount(){
+		numberOfPellets--;
 	}
 
 }

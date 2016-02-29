@@ -69,17 +69,30 @@ public class Renderer {
 				
 			}
 		}
-		g2d.setColor(pacman.getColor());
-		g2d.fillOval(pacman.xCoord*20, pacman.yCoord*20, 20, 20);
-		
+		if(pacman.getIsActive()){
+			g2d.setColor(pacman.getColor());
+			g2d.fillOval(pacman.xCoord*20, pacman.yCoord*20, 20, 20);
+		}
 		for(Ghost ghost : ghosts){
-			g2d.setColor(ghost.getColor());
-			g2d.fillRect(ghost.xCoord*20, ghost.yCoord*20+10, 20, 10);
-			g2d.fillOval(ghost.xCoord*20, ghost.yCoord*20, 20, 20);
+			if(ghost.getIsActive()){
+				g2d.setColor(ghost.getColor());
+				g2d.fillRect(ghost.xCoord*20, ghost.yCoord*20+10, 20, 10);
+				g2d.fillOval(ghost.xCoord*20, ghost.yCoord*20, 20, 20);
+			}
+
 		}
 		
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Lives Remaining: " + pacman.getLives(), 15, 700);
+		
+		if(pacman.hasPacmanWon()){
+			g2d.setColor(Color.WHITE);
+			g2d.drawString("You Have Won!", 500, 700);
+		}
+		if(pacman.hasPacmanLost()){
+			g2d.setColor(Color.WHITE);
+			g2d.drawString("You Have Lost!", 500, 700);
+		}
 		
 		
 		graphics = bufferStrategy.getDrawGraphics();

@@ -7,6 +7,8 @@ public class Pacman extends GameObject {
 
 	private int lives = 3;
 	private boolean canPacmanKillGhosts = false;
+	private boolean isGameWon = false;
+	private boolean isGameLost = false;
 
 	public Pacman(int x, int y, Color color, Input input, Board gameBoard, boolean isActive) {
 		super(x, y, color, input, gameBoard, isActive);
@@ -64,9 +66,6 @@ public class Pacman extends GameObject {
 				checkForGhost();
 				tryToEatPellet();
 			}
-			else{
-				
-			}
 		}
 	}
 
@@ -88,7 +87,22 @@ public class Pacman extends GameObject {
 	 * Sets pacman to no longer be active.
 	 */
 	public void death() {
+		isGameLost = true;
 		isActive = false;
+	}
+	
+	public void winGame(){
+		isGameWon = true;
+		isActive = false;
+		
+	}
+	
+	public boolean hasPacmanWon(){
+		return isGameWon;
+	}
+	
+	public boolean hasPacmanLost(){
+		return isGameLost;
 	}
 
 	/**
@@ -97,7 +111,14 @@ public class Pacman extends GameObject {
 	 */
 	private void tryToEatPellet() {
 		if (gameBoard.getGameboard()[yCoord][xCoord].isPellet()) {
+			if(gameBoard.getGameboard()[yCoord][xCoord].isPowerPellet()){
+				canPacmanKillGhosts = true;
+			}
 			gameBoard.getGameboard()[yCoord][xCoord].removePellet();
+			gameBoard.reducePelletCount();
+		}
+		if(gameBoard.getNumberOfPellets() == 0){
+			winGame();
 		}
 	}
 
@@ -107,10 +128,16 @@ public class Pacman extends GameObject {
 	 */
 	private void checkForGhost() {
 		if (gameBoard.getGameboard()[yCoord][xCoord].getIsOccupiedBy() == true) {
+			System.out.println("Number of ghosts " + gameBoard.getGameboard()[yCoord][xCoord].getOccupiedBy().getNumberOfGhosts() + " Can Pacman kill ghosts " +canPacmanKillGhosts);
 			if (canPacmanKillGhosts == false) {
 				loseLife();
 			} else {
-				gameBoard.getGameboard()[yCoord][xCoord].getOccupiedBy().death();
+				Ghost temp = gameBoard.getGameboard()[yCoord][xCoord].getOccupiedBy();
+				temp.death();
+				if(temp.getNumberOfGhosts() == 0){
+					winGame();
+				}
+				canPacmanKillGhosts = false;
 			}
 		}
 	}

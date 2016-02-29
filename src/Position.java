@@ -3,7 +3,7 @@ public class Position {
 	private boolean isBlank = false;
 	private boolean isPellet = false;
 	private boolean isPowerPellet = false;
-	private GameObject occupiedBy = null;
+	private Ghost occupiedBy = null;
 	
 	public Position(boolean isWall, boolean isBlank, boolean isPellet, boolean isPowerPellet){
 		this.isWall = isWall;
@@ -61,7 +61,7 @@ public class Position {
 		return false;
 	}
 	
-	public GameObject getOccupiedBy() {
+	public Ghost getOccupiedBy() {
 		return occupiedBy;
 	}
 	
@@ -71,7 +71,7 @@ public class Position {
 	 * Sets the position to be occupied by the object calling it.
 	 * @param occupiedBy The object who called they function.
 	 */
-	public void setOccupiedBy(GameObject occupiedBy) {
+	public void setOccupiedBy(Ghost occupiedBy) {
 		this.occupiedBy = occupiedBy;
 	}
 }
