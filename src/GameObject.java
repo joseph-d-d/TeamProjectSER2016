@@ -7,12 +7,13 @@ public abstract class GameObject {
 	protected boolean isActive;
 	protected Board gameBoard;
 	
-	protected GameObject(int x, int y, Color color, Input input, Board gameBoard){
+	protected GameObject(int x, int y, Color color, Input input, Board gameBoard, Boolean isActive){
 		this.xCoord = x;
 		this.yCoord = y;
 		this.color = color;
 		this.input = input;
 		this.gameBoard = gameBoard;
+		this.isActive = isActive;
 	}
 
 	/**
