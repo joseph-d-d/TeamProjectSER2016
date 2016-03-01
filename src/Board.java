@@ -1,16 +1,14 @@
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 public class Board {
 	private Position[][] gameBoard = null;
-	private int numberOfPellets = 0;
 	
 	public Board(){
 		gameBoard = new Position[34][30];
-		// 0 represents an empty position
+		// 0 represents an blank
 		// 1 represents a wall
 		// 2 represents a pellet
 		// 3 represents a power pellet
-		// 4 represents a pellet and an intersection
+		// 4 represents a pellet and a fork
+		// 5 represents a blank and a fork
 		int[][] boardArray = 
 			{
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -26,14 +24,14 @@ public class Board {
 				{0,1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,0},
 				{0,0,0,0,0,0,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,0,0,0,0,0,0},
 				{0,0,0,0,0,0,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,0,0,0,0,0,0},
-				{0,0,0,0,0,0,1,2,1,1,0,0,0,0,0,0,0,0,0,0,1,1,2,1,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,2,1,1,0,0,0,5,0,0,5,0,0,0,1,1,2,1,0,0,0,0,0,0},
 				{0,0,0,0,0,0,1,2,1,1,0,1,1,1,0,0,1,1,1,0,1,1,2,1,0,0,0,0,0,0},
 				{0,1,1,1,1,1,1,2,1,1,0,1,0,0,0,0,0,0,1,0,1,1,2,1,1,1,1,1,1,0},
-				{0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,2,0,0,5,1,0,0,0,0,0,0,1,5,0,0,2,0,0,0,0,0,0,0},
 				{0,1,1,1,1,1,1,2,1,1,0,1,0,0,0,0,0,0,1,0,1,1,2,1,1,1,1,1,1,0},
 				{0,0,0,0,0,0,1,2,1,1,0,1,0,0,0,0,0,0,1,0,1,1,2,1,0,0,0,0,0,0},
 				{0,0,0,0,0,0,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,0,0,0,0,0,0},
-				{0,0,0,0,0,0,1,2,1,1,0,0,0,0,0,0,0,0,0,0,1,1,2,1,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,2,1,1,5,0,0,0,0,0,0,0,0,5,1,1,2,1,0,0,0,0,0,0},
 				{0,0,0,0,0,0,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,0,0,0,0,0,0},
 				{0,1,1,1,1,1,1,2,1,1,0,1,1,1,1,1,1,1,1,0,1,1,2,1,1,1,1,1,1,0},
 				{0,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,0},
@@ -65,28 +63,23 @@ public class Board {
 				if (boardArray[i][j] == 2)
 				{
 					gameBoard[i][j] = new Position(false, false, true, false);
-					numberOfPellets++;
 				}
 				// Draw power pellets for array values of 3
 				if (boardArray[i][j] == 3)
 				{
-					gameBoard[i][j] = new Position(false, false, true, true);
-					numberOfPellets++;
+					gameBoard[i][j] = new Position(false, false, true, false);
 				}
+				// Position is blank and a fork
+				if(boardArray[i][j] == 5){
+					gameBoard[i][j] = new Position(false, true, false, true);
+				}
+				 
 			} // end inner for loop
 		} // end outer for loop
 	}
 	
 	public Position[][] getGameboard(){
 		return gameBoard;
-	}
-	
-	public int getNumberOfPellets(){
-		return numberOfPellets;
-	}
-	
-	public void reducePelletCount(){
-		numberOfPellets--;
 	}
 
 }
