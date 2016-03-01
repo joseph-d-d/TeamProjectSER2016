@@ -2,12 +2,14 @@ import java.awt.Color;
 import java.util.Random;
 
 public class Ghost extends GameObject {
+	private static int numberOfGhosts = 0;
 	private Behavior behavior;
 	private Direction direction;
 	
+	
 	protected Ghost(int x, int y, Color color, Input input, Board gameBoard, 
-			Behavior behavior, Direction direction) {
-		super(x, y, color, input, gameBoard);
+			Behavior behavior, Direction direction, boolean isActive) {
+		super(x, y, color, input, gameBoard, isActive);
 		this.behavior = behavior;
 		this.direction = direction;
 	}
@@ -445,7 +447,14 @@ public class Ghost extends GameObject {
 	/**
 	 * Kills the ghost
 	 */
-	public void death(){
+	public void death() {
+		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(null);
+		numberOfGhosts--;
 		isActive = false;
+		
+	}
+	
+	public int getNumberOfGhosts() {
+		return numberOfGhosts;
 	}
 }

@@ -1,4 +1,5 @@
 public class Board {
+	private int numberOfPellets = 0;
 	private Position[][] gameBoard = null;
 	
 	public Board(){
@@ -63,11 +64,13 @@ public class Board {
 				if (boardArray[i][j] == 2)
 				{
 					gameBoard[i][j] = new Position(false, false, true, false);
+					numberOfPellets++;
 				}
 				// Draw power pellets for array values of 3
 				if (boardArray[i][j] == 3)
 				{
 					gameBoard[i][j] = new Position(false, false, true, false);
+					numberOfPellets++;
 				}
 				// Position is blank and a fork
 				if(boardArray[i][j] == 5){
@@ -80,6 +83,14 @@ public class Board {
 	
 	public Position[][] getGameboard(){
 		return gameBoard;
+	}
+	
+	public int getNumberOfPellets(){
+		return numberOfPellets;
+	}
+	
+	public void reducePelletCount(){
+		numberOfPellets--;
 	}
 
 }

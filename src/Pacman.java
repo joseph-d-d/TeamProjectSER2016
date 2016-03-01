@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-import org.w3c.dom.css.ElementCSSInlineStyle;
-
 public class Pacman extends GameObject {
 
 	private int lives = 3;
