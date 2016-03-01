@@ -13,22 +13,24 @@ public class Game extends Canvas {
 		Renderer renderer = new  Renderer(frame, gameWindow);
 		Pacman pacman = new Pacman(2, 2, Color.YELLOW, input, gameBoard, true);
 		Ghost[] ghosts = new Ghost[4];
-		ghosts[0] = new Ghost(17, 15, Color.PINK, input, gameBoard, true, Behavior.AGGRESSIVE);
-		ghosts[1] = new Ghost(16, 15, Color.ORANGE, input, gameBoard, true, Behavior.RANDOM);
-		ghosts[2] = new Ghost(14, 15, Color.GREEN, input, gameBoard, true, Behavior.FOLLOW_LEFT);
-		ghosts[3] = new Ghost(15, 15, Color.RED, input, gameBoard, true, Behavior.FOLLOW_RIGHT);
+		ghosts[0] = new Ghost(17, 15, Color.PINK, input, gameBoard, 
+				Behavior.AGGRESSIVE, Direction.LEFT, true);
+		ghosts[1] = new Ghost(16, 15, Color.ORANGE, input, gameBoard, 
+				Behavior.RANDOM, Direction.RIGHT, true);
+		ghosts[2] = new Ghost(14, 15, Color.GREEN, input, gameBoard, 
+				Behavior.FOLLOW_LEFT, Direction.UP, true);
+		ghosts[3] = new Ghost(15, 15, Color.RED, input, gameBoard, 
+				Behavior.FOLLOW_RIGHT, Direction.UP, true);
 
 		//Game loop
 		while (!exitGame) {
 			renderer.render(gameBoard, pacman, ghosts);
-			
+			pacman.update();
 			for(Ghost ghost : ghosts){
 				ghost.update();
 			}
-			pacman.update();
 			input.update();
 			Thread.yield();
 		}
-		
 	} // end main
 } // end class

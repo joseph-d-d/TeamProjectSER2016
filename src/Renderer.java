@@ -28,7 +28,7 @@ public class Renderer {
 		frame.getContentPane().add(gameWindow);
 		frame.setVisible(true);
 		frame.setResizable(false);
-		frame.setSize(1024, 768);
+		frame.setSize(600, 768);
 		gameWindow.createBufferStrategy(2);
 		bufferStrategy = gameWindow.getBufferStrategy();
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -65,8 +65,7 @@ public class Renderer {
 				if(gameBoard.getGameboard()[i][j].isPowerPellet()){
 					g2d.setColor(Color.RED);
 					g2d.fillRect(20*j+6, 20*i+6, 10, 10);
-				}
-				
+				}	
 			}
 		}
 		if(pacman.getIsActive()){
