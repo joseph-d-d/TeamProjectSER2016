@@ -312,7 +312,6 @@ public class Ghost extends GameObject {
 		gameBoard.getGameboard()[yCoord][xCoord].setOccupiedBy(null);
 		numberOfGhosts--;
 		isActive = false;
-		
 	}
 
 	public int getNumberOfGhosts() {
