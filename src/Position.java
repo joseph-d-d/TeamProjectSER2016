@@ -2,14 +2,15 @@ public class Position {
 	private boolean isWall = false;
 	private boolean isBlank = false;
 	private boolean isPellet = false;
-	private boolean isFork = false;
-	private GameObject occupiedBy = null;
+	private boolean isPowerPellet = false;
+	private Ghost occupiedBy = null;
 	
-	public Position(boolean isWall, boolean isBlank, boolean isPellet, boolean isFork){
+	public Position(boolean isWall, boolean isBlank, boolean isPellet, boolean isPowerPellet){
 		this.isWall = isWall;
 		this.isBlank = isBlank;
 		this.isPellet = isPellet;
-		this.isFork = isFork;
+		this.isPowerPellet = isPowerPellet;
+		
 	}
 
 	/**
@@ -17,13 +18,6 @@ public class Position {
 	 */
 	public boolean isWall(){
 		return isWall;
-	}
-	
-	/**
-	 * @return the isFork
-	 */
-	public boolean isFork(){
-		return isFork;
 	}
 	
 	/**
@@ -42,12 +36,17 @@ public class Position {
 		return isPellet;
 	}
 	
+	public boolean isPowerPellet(){
+		return isPowerPellet;
+	}
+	
 	/**
 	 * Removes the pellet from this position and makes it blank.
 	 */
 	public void removePellet(){
 		isBlank = true;
 		isPellet = false;
+		isPowerPellet = false;
 	}
 
 	/**
@@ -62,7 +61,7 @@ public class Position {
 		return false;
 	}
 	
-	public GameObject getOccupiedBy() {
+	public Ghost getOccupiedBy() {
 		return occupiedBy;
 	}
 	
@@ -72,7 +71,7 @@ public class Position {
 	 * Sets the position to be occupied by the object calling it.
 	 * @param occupiedBy The object who called they function.
 	 */
-	public void setOccupiedBy(GameObject occupiedBy) {
+	public void setOccupiedBy(Ghost occupiedBy) {
 		this.occupiedBy = occupiedBy;
 	}
 }
