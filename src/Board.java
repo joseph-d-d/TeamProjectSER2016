@@ -1,5 +1,3 @@
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 public class Board {
 	private Position[][] gameBoard = null;
 	private int numberOfPellets = 0;
@@ -77,14 +75,25 @@ public class Board {
 		} // end outer for loop
 	}
 	
+	/**
+	 * Gets the gameboard.
+	 * @return 2D array of positions
+	 */
 	public Position[][] getGameboard(){
 		return gameBoard;
 	}
 	
+	/**
+	 * Gets the number of pellets left on the board.
+	 * @return numberOfPellets.
+	 */
 	public int getNumberOfPellets(){
 		return numberOfPellets;
 	}
 	
+	/**
+	 * Removes 1 from to the total count of pellets.
+	 */
 	public void reducePelletCount(){
 		numberOfPellets--;
 	}

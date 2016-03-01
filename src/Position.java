@@ -14,14 +14,15 @@ public class Position {
 	}
 
 	/**
-	 * @return the isWall
+	 * Checks if the position is a wall.
+	 * @return isWall
 	 */
 	public boolean isWall(){
 		return isWall;
 	}
 	
 	/**
-	 * 
+	 * Checks if the position is a blank.
 	 * @return isBlank
 	 */
 	public boolean isBlank(){
@@ -29,13 +30,17 @@ public class Position {
 	}
 	
 	/**
-	 * 
+	 * Checks if the position is a pellet.
 	 * @return isPellet
 	 */
 	public boolean isPellet(){
 		return isPellet;
 	}
 	
+	/**
+	 * Checks if the position is a power pellet.
+	 * @return isPowerPellet
+	 */
 	public boolean isPowerPellet(){
 		return isPowerPellet;
 	}
@@ -61,6 +66,10 @@ public class Position {
 		return false;
 	}
 	
+	/**
+	 * Get the ghost occupying this position.
+	 * @return occupiedBy the ghost in this position.
+	 */
 	public Ghost getOccupiedBy() {
 		return occupiedBy;
 	}

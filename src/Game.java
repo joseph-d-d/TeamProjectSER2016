@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
 
 public class Game extends Canvas {
@@ -29,8 +32,15 @@ public class Game extends Canvas {
 			for(Ghost ghost : ghosts){
 				ghost.update();
 			}
+			if(input.getIsKeyPressed()){
+				if(input.getCurrentKey().getKeyCode() == KeyEvent.VK_ESCAPE){
+					exitGame = true;
+				}
+			}
 			input.update();
 			Thread.yield();
 		}
+		//Close the game.
+		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	} // end main
 } // end class

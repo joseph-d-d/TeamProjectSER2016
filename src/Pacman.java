@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-import org.w3c.dom.css.ElementCSSInlineStyle;
-
 public class Pacman extends GameObject {
 
 	private int lives = 3;
@@ -26,41 +24,34 @@ public class Pacman extends GameObject {
 
 				if (input.getCurrentKey().getKeyCode() == KeyEvent.VK_A) {
 					if (gameBoard.getGameboard()[yCoord][xCoord - 1].isWall() == false) {
+						//Moves pacman to the other side of the board.
 						if(xCoord == 1){
 							xCoord = 28;
 						}
 						else{
 							xCoord -= 1;
 						}
-						System.out.println("Move pacman left");
-						System.out.println("Total moves: " + input.getTotalPacmanMoves());
 					}
 				}
 				if (input.getCurrentKey().getKeyCode() == KeyEvent.VK_D) {
 					if (gameBoard.getGameboard()[yCoord][xCoord + 1].isWall() == false) {
+						//Moves pacman to the other side of the board.
 						if(xCoord == 28){
 							xCoord = 1;
 						}
 						else{
 							xCoord += 1;
 						}
-						
-						System.out.println("Move pacman right");
-						System.out.println("Total moves: " + input.getTotalPacmanMoves());
 					}
 				}
 				if (input.getCurrentKey().getKeyCode() == KeyEvent.VK_W) {
 					if (gameBoard.getGameboard()[yCoord - 1][xCoord].isWall() == false) {
 						yCoord -= 1;
-						System.out.println("Move pacman up");
-						System.out.println("Total moves: " + input.getTotalPacmanMoves());
 					}
 				}
 				if (input.getCurrentKey().getKeyCode() == KeyEvent.VK_S) {
 					if (gameBoard.getGameboard()[yCoord + 1][xCoord].isWall() == false) {
 						yCoord += 1;
-						System.out.println("Move pacman down");
-						System.out.println("Total moves: " + input.getTotalPacmanMoves());
 					}
 				}
 				checkForGhost();
@@ -79,6 +70,10 @@ public class Pacman extends GameObject {
 		}
 	}
 
+	/**
+	 * Gets the number of pacman's remaining lives.
+	 * @return lives remaining. 
+	 */
 	public int getLives() {
 		return lives;
 	}
@@ -128,7 +123,6 @@ public class Pacman extends GameObject {
 	 */
 	private void checkForGhost() {
 		if (gameBoard.getGameboard()[yCoord][xCoord].getIsOccupiedBy() == true) {
-			System.out.println("Number of ghosts " + gameBoard.getGameboard()[yCoord][xCoord].getOccupiedBy().getNumberOfGhosts() + " Can Pacman kill ghosts " +canPacmanKillGhosts);
 			if (canPacmanKillGhosts == false) {
 				loseLife();
 			} else {
