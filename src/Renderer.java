@@ -89,7 +89,6 @@ public class Renderer {
 				graphics2d.fillRect(ghost.xCoord*20, ghost.yCoord*20+10, 20, 10);
 				graphics2d.fillOval(ghost.xCoord*20, ghost.yCoord*20, 20, 20);
 			}
-
 		}
 		
 		graphics2d.setColor(Color.WHITE);
@@ -119,5 +118,4 @@ public class Renderer {
 			graphics2d.dispose();
 		}
 	}
-
 }

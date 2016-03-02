@@ -88,7 +88,6 @@ public class Pacman extends GameObject {
 	
 	public void winGame(){
 		isGameWon = true;
-		isActive = false;
 		
 	}
 	
